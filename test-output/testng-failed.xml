@@ -3,13 +3,13 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="GreenKart.TestCases.GreenKartDashboardTest">
+      <class name="GreenKart.TestCases.CartTest">
         <methods>
-          <include name="testAddToCart"/>
           <include name="tearDown"/>
+          <include name="testCartProducts"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- GreenKart.TestCases.GreenKartDashboardTest -->
+      </class> <!-- GreenKart.TestCases.CartTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
