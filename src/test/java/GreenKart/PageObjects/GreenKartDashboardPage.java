@@ -1,10 +1,7 @@
 package GreenKart.PageObjects;
 
 import java.time.Duration;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,35 +21,23 @@ public class GreenKartDashboardPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	// All product containers
-	private By products = By.cssSelector("div.product");
+	// Method to add products to the cart
+	public void addProductsToCart(String[] productNames) {
+		List<WebElement> productCards = driver.findElements(By.xpath("//div[@class='product']"));
 
-	// Method to add products to cart by names
-	public void addProductsToCart(String[] productNames) throws InterruptedException {
-		Thread.sleep(2000); 
+		for (WebElement productCard : productCards) {
+			String fullText = productCard.findElement(By.cssSelector("h4.product-name")).getText();
+			String productName = fullText.split("-")[0].trim();
 
-		List<WebElement> allProducts = driver.findElements(products);
-
-		for (WebElement product : allProducts) {
-			Thread.sleep(2000); 
-			List<WebElement> productNameElements = wait.until(
-				ExpectedConditions.visibilityOfNestedElementsLocatedBy(product, By.cssSelector("h4.product-name"))
-			);
-
-			if (productNameElements.isEmpty()) continue;
-
-			String name = productNameElements.get(0).getText().split("-")[0].trim();
-			//System.out.println(name);
-			
 			for (String item : productNames) {
-				if (name.equalsIgnoreCase(item)) {
-					WebElement addButton = product.findElement(By.xpath(".//button[text()='ADD TO CART']"));
-					wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
+				if (productName.equalsIgnoreCase(item)) {
+					WebElement btnAddToCart = productCard.findElement(By.xpath(".//button[.='ADD TO CART']"));
+					wait.until(ExpectedConditions.elementToBeClickable(btnAddToCart)).click();
+					System.out.println(productName + " added to cart.");
 					break;
 				}
 			}
 		}
 	}
-
 	
 }

@@ -5,6 +5,7 @@
     <classes>
       <class name="GreenKart.Base.BaseComponent"/>
       <class name="GreenKart.TestCases.GreenKartDashboardTest"/>
+      <class name="GreenKart.TestCases.CartTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
